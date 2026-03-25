@@ -3,18 +3,16 @@ from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
 
 from config import Config
 from models import db
 from routes.auth_routes import auth_bp
 from routes.scan_routes import scan_bp
 from services.logging_service import setup_logging
+from utils.extensions import limiter
 
 bcrypt = Bcrypt()
 jwt = JWTManager()
-limiter = Limiter(key_func=get_remote_address)
 
 def create_app(config_class=Config):
     app = Flask(__name__)

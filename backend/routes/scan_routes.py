@@ -5,7 +5,7 @@ from services.shodan_service import ShodanService
 from services.risk_engine import calculate_risk_score
 from utils.validators import ScanSchema
 from marshmallow import ValidationError
-from app import limiter
+from utils.extensions import limiter
 import concurrent.futures
 
 scan_bp = Blueprint('scan', __name__)
@@ -14,7 +14,7 @@ scan_schema = ScanSchema()
 
 scan_executor = concurrent.futures.ThreadPoolExecutor(max_workers=5)
 
-def perform_shodan_scan(query):
+def perform_shodan_scan(query: str) -> dict:
     return shodan_service.search(query)
 
 @scan_bp.route('/', methods=['POST', 'OPTIONS'])
@@ -37,7 +37,7 @@ def run_scan():
 
     try:
         current_app.logger.info(f"Dispatching threaded scan for query '{query}' by user {current_user['username']}")
-        future = scan_executor.submit(perform_shodan_scan, query)
+        future = scan_executor.submit(perform_shodan_scan, query)  # type: ignore
         
         shodan_results = future.result(timeout=15)
         
