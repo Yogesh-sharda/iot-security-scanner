@@ -12,14 +12,15 @@ const Analytics = () => {
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
     const [aggregatedData, setAggregatedData] = useState({ ports: {}, risks: {}, trends: { labels: [], data: [] } });
-
-    if (user?.role !== 'Admin') {
-        return <Navigate to="/dashboard" replace />;
-    }
+    const isAdmin = user?.role === 'Admin';
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                if (!isAdmin) {
+                    setLoading(false);
+                    return;
+                }
                 const historyData = await scanService.getHistory(1, 50);
                 const items = historyData.items || [];
                 setHistory(items);
@@ -51,7 +52,7 @@ const Analytics = () => {
                         });
                         const avgRisk = details.results.length > 0 ? (scanRiskTotal / details.results.length) : 0;
                         trendsData.push(avgRisk);
-                    } catch (e) {
+                    } catch {
                         trendsData.push(0);
                     }
                 }
@@ -65,7 +66,11 @@ const Analytics = () => {
         };
 
         fetchData();
-    }, []);
+    }, [isAdmin]);
+
+    if (!isAdmin) {
+        return <Navigate to="/dashboard" replace />;
+    }
 
     if (loading) {
         return <div className="flex h-full items-center justify-center min-h-[400px]"><p className="text-cyber-blue animate-pulse glow-text tracking-widest uppercase">Aggregating Global Metrics...</p></div>;

@@ -8,14 +8,19 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        const role = localStorage.getItem('role');
-        const username = localStorage.getItem('username');
-        
-        if (token && username) {
-            setUser({ username, role });
-        }
-        setLoading(false);
+        // Defer state updates to avoid synchronous setState-in-effect lint warnings.
+        const t = setTimeout(() => {
+            const token = localStorage.getItem('token');
+            const role = localStorage.getItem('role');
+            const username = localStorage.getItem('username');
+            
+            if (token && username) {
+                setUser({ username, role });
+            }
+            setLoading(false);
+        }, 0);
+
+        return () => clearTimeout(t);
     }, []);
 
     const login = async (username, password) => {
@@ -35,4 +40,5 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => useContext(AuthContext);

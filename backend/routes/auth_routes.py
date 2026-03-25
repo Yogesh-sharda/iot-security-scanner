@@ -1,7 +1,13 @@
 from flask import Blueprint, request, jsonify, current_app
 from models import db, User
 from utils.security import hash_password, verify_password
-from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity
+from flask_jwt_extended import (
+    create_access_token,
+    create_refresh_token,
+    jwt_required,
+    get_jwt_identity,
+    get_jwt,
+)
 from utils.validators import RegisterSchema, LoginSchema
 from marshmallow import ValidationError
 import logging
@@ -69,8 +75,16 @@ def login():
         current_app.logger.warning(f"Failed login attempt for username: {username}")
         return jsonify({"msg": "Invalid username or password"}), 401
 
-    access_token = create_access_token(identity={"id": user.id, "role": user.role, "username": user.username})
-    refresh_token = create_refresh_token(identity={"id": user.id, "role": user.role, "username": user.username})
+    # Flask-JWT-Extended expects the JWT "sub"/identity to be a STRING.
+    # Put the remaining user context into JWT claims.
+    access_token = create_access_token(
+        identity=str(user.id),
+        additional_claims={"role": user.role, "username": user.username},
+    )
+    refresh_token = create_refresh_token(
+        identity=str(user.id),
+        additional_claims={"role": user.role, "username": user.username},
+    )
     
     current_app.logger.info(f"User logged in: {username}")
     return jsonify(access_token=access_token, refresh_token=refresh_token, role=user.role, username=user.username), 200
@@ -81,9 +95,16 @@ def refresh():
     if request.method == 'OPTIONS':
         return jsonify({}), 200
     
-    current_user = get_jwt_identity()
-    new_access_token = create_access_token(identity=current_user)
-    current_app.logger.info(f"Token refreshed for user: {current_user['username']}")
+    user_id = get_jwt_identity()
+    claims = get_jwt()
+    new_access_token = create_access_token(
+        identity=user_id,
+        additional_claims={
+            "role": claims.get("role"),
+            "username": claims.get("username"),
+        },
+    )
+    current_app.logger.info(f"Token refreshed for user: {claims.get('username')}")
     return jsonify(access_token=new_access_token), 200
 
 @auth_bp.route('/me', methods=['GET', 'OPTIONS'])
@@ -91,5 +112,6 @@ def refresh():
 def get_current_user():
     if request.method == 'OPTIONS':
         return jsonify({}), 200
-    current_user = get_jwt_identity()
-    return jsonify(current_user), 200
+    user_id = get_jwt_identity()
+    claims = get_jwt()
+    return jsonify({"id": user_id, **claims}), 200

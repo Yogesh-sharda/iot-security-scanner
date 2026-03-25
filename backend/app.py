@@ -41,5 +41,6 @@ if __name__ == '__main__':
     app = create_app()
     # Avoid Werkzeug debug pinning issues in restricted environments.
     debug = os.environ.get("FLASK_DEBUG", "0").lower() in ("1", "true", "yes")
+    host = os.environ.get("HOST", "0.0.0.0")
     port = int(os.environ.get("PORT", "5000"))
-    app.run(debug=debug, port=port, use_reloader=False)
+    app.run(debug=debug, host=host, port=port, use_reloader=False)

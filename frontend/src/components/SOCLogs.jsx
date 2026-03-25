@@ -8,7 +8,10 @@ const SOCLogs = ({ isActive, query }) => {
     useEffect(() => {
         if (!isActive) return;
         
-        setLogs([`[SYSTEM] Initializing scan sequence for target: ${query}`]);
+        // Defer the first state update to avoid synchronous setState-in-effect lint warnings.
+        const t0 = setTimeout(() => {
+            setLogs([`[SYSTEM] Initializing scan sequence for target: ${query}`]);
+        }, 0);
         
         const sequence = [
             { delay: 1000, msg: `[AUTH] Validating operative clearance... SUCCESS` },
@@ -27,7 +30,10 @@ const SOCLogs = ({ isActive, query }) => {
             timeouts.push(t);
         });
 
-        return () => timeouts.forEach(clearTimeout);
+        return () => {
+            clearTimeout(t0);
+            timeouts.forEach(clearTimeout);
+        };
     }, [isActive, query]);
 
     useEffect(() => {

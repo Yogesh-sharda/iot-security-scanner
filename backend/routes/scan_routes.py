@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, current_app
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from models import db, Scan, Result
 from services.shodan_service import ShodanService
 from services.risk_engine import calculate_risk_score
@@ -14,8 +14,14 @@ scan_schema = ScanSchema()
 
 scan_executor = concurrent.futures.ThreadPoolExecutor(max_workers=5)
 
-def perform_shodan_scan(query: str) -> dict:
-    return shodan_service.search(query)
+def perform_shodan_scan(app, query: str) -> dict:
+    """
+    Execute Shodan scan inside the Flask app context.
+
+    ShodanService logs via `current_app.logger`, which requires an app context.
+    """
+    with app.app_context():
+        return shodan_service.search(query)
 
 @scan_bp.route('/', methods=['POST', 'OPTIONS'])
 @jwt_required()
@@ -24,8 +30,9 @@ def run_scan():
     if request.method == 'OPTIONS':
         return jsonify({}), 200
         
-    current_user = get_jwt_identity()
-    user_id = current_user['id']
+    user_id = int(get_jwt_identity())
+    claims = get_jwt()
+    username = claims.get("username")
     
     data = request.get_json()
     try:
@@ -36,8 +43,9 @@ def run_scan():
     query = validated_data['query']
 
     try:
-        current_app.logger.info(f"Dispatching threaded scan for query '{query}' by user {current_user['username']}")
-        future = scan_executor.submit(perform_shodan_scan, query)  # type: ignore
+        current_app.logger.info(f"Dispatching threaded scan for query '{query}' by user {username}")
+        app = current_app._get_current_object()
+        future = scan_executor.submit(perform_shodan_scan, app, query)  # type: ignore
         
         shodan_results = future.result(timeout=15)
         
@@ -79,7 +87,7 @@ def run_scan():
             })
 
         db.session.commit()
-        current_app.logger.info(f"User {current_user['username']} scanned '{query}' and got {len(results_data)} results.")
+        current_app.logger.info(f"User {username} scanned '{query}' and got {len(results_data)} results.")
         return jsonify({
             "msg": "Scan completed successfully", 
             "scan_id": scan_id, 
@@ -101,9 +109,9 @@ def get_scan_history():
     if request.method == 'OPTIONS':
         return jsonify({}), 200
         
-    current_user = get_jwt_identity()
-    user_id = current_user['id']
-    role = current_user['role']
+    user_id = int(get_jwt_identity())
+    claims = get_jwt()
+    role = claims.get("role")
     
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('limit', 20, type=int)
@@ -137,9 +145,9 @@ def get_scan_results(scan_id):
     if request.method == 'OPTIONS':
         return jsonify({}), 200
         
-    current_user = get_jwt_identity()
-    user_id = current_user['id']
-    role = current_user['role']
+    user_id = int(get_jwt_identity())
+    claims = get_jwt()
+    role = claims.get("role")
 
     scan = Scan.query.get_or_404(scan_id)
     
