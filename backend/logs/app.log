@@ -47,3 +47,99 @@
 2026-03-25 15:01:38,524 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
 2026-03-25 15:01:38,524 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-25 15:03:02,251 - app - INFO - System Startup: Logging Initialized
+2026-03-25 15:03:02,262 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5055
+2026-03-25 15:03:02,262 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-25 15:03:03,562 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:03:03] "[33mGET / HTTP/1.1[0m" 404 -
+2026-03-25 15:03:39,747 - app - INFO - System Startup: Logging Initialized
+2026-03-25 15:03:39,763 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-25 15:03:39,764 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-25 15:03:40,710 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:03:40] "[33mGET / HTTP/1.1[0m" 404 -
+2026-03-25 15:04:21,284 - app - INFO - System Startup: Logging Initialized
+2026-03-25 15:04:21,294 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://127.0.0.1:5000
+2026-03-25 15:04:21,294 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-25 15:04:22,628 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:04:22] "[33mGET / HTTP/1.1[0m" 404 -
+2026-03-25 15:16:15,548 - app - INFO - System Startup: Logging Initialized
+2026-03-25 15:16:15,556 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5055
+2026-03-25 15:16:15,556 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-25 15:16:15,820 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:16:15] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+2026-03-25 15:16:16,137 - app - INFO - User registered successfully: smoke_1774431975 (Analyst)
+2026-03-25 15:16:16,138 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:16:16] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 201 -
+2026-03-25 15:16:16,365 - app - INFO - User logged in: smoke_1774431975
+2026-03-25 15:16:16,365 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:16:16] "POST /api/auth/login HTTP/1.1" 200 -
+2026-03-25 15:16:16,368 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:16:16] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 422 -
+2026-03-25 15:16:16,370 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:16:16] "[31m[1mPOST /api/scan/ HTTP/1.1[0m" 422 -
+2026-03-25 15:16:16,371 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:16:16] "[31m[1mGET /api/scan/history?page=1&limit=5 HTTP/1.1[0m" 422 -
+2026-03-25 15:16:16,373 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:16:16] "[31m[1mGET /api/scan/history?page=1&limit=5 HTTP/1.1[0m" 401 -
+2026-03-25 15:17:36,515 - app - INFO - System Startup: Logging Initialized
+2026-03-25 15:17:36,524 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5055
+2026-03-25 15:17:36,524 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-25 15:17:36,819 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:17:36] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+2026-03-25 15:17:37,150 - app - INFO - User registered successfully: smoke2_1774432056 (Analyst)
+2026-03-25 15:17:37,151 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:17:37] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 201 -
+2026-03-25 15:17:37,386 - app - INFO - User logged in: smoke2_1774432056
+2026-03-25 15:17:37,388 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:17:37] "POST /api/auth/login HTTP/1.1" 200 -
+2026-03-25 15:17:37,390 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:17:37] "GET /api/auth/me HTTP/1.1" 200 -
+2026-03-25 15:17:37,392 - app - INFO - Dispatching threaded scan for query 'apache' by user smoke2_1774432056
+2026-03-25 15:17:37,392 - app - ERROR - Scan error: Working outside of application context.
+
+This typically means that you attempted to use functionality that needed
+the current application. To solve this, set up an application context
+with app.app_context(). See the documentation for more information.
+2026-03-25 15:17:37,393 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:17:37] "[35m[1mPOST /api/scan/ HTTP/1.1[0m" 500 -
+2026-03-25 15:19:06,320 - app - INFO - System Startup: Logging Initialized
+2026-03-25 15:19:06,330 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5055
+2026-03-25 15:19:06,330 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-25 15:19:06,441 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:19:06] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+2026-03-25 15:19:06,763 - app - INFO - User registered successfully: smoke3_1774432146 (Analyst)
+2026-03-25 15:19:06,764 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:19:06] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 201 -
+2026-03-25 15:19:06,993 - app - INFO - User logged in: smoke3_1774432146
+2026-03-25 15:19:06,994 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:19:06] "POST /api/auth/login HTTP/1.1" 200 -
+2026-03-25 15:19:06,997 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:19:06] "GET /api/auth/me HTTP/1.1" 200 -
+2026-03-25 15:19:06,999 - app - INFO - Dispatching threaded scan for query 'apache' by user smoke3_1774432146
+2026-03-25 15:19:06,999 - app - INFO - Initiating Shodan query: apache
+2026-03-25 15:19:07,072 - app - ERROR - Shodan API Error for query 'apache': Unable to connect to Shodan
+2026-03-25 15:19:07,072 - app - ERROR - Scan error: Shodan Error: Unable to connect to Shodan
+2026-03-25 15:19:07,073 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:19:07] "[35m[1mPOST /api/scan/ HTTP/1.1[0m" 500 -
+2026-03-25 15:19:24,080 - app - INFO - System Startup: Logging Initialized
+2026-03-25 15:19:24,086 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5055
+2026-03-25 15:19:24,087 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-25 15:19:24,202 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:19:24] "[31m[1mGET /api/auth/me HTTP/1.1[0m" 401 -
+2026-03-25 15:19:24,506 - app - INFO - User registered successfully: smoke3b_1774432164 (Analyst)
+2026-03-25 15:19:24,507 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:19:24] "[35m[1mPOST /api/auth/register HTTP/1.1[0m" 201 -
+2026-03-25 15:19:24,723 - app - INFO - User logged in: smoke3b_1774432164
+2026-03-25 15:19:24,724 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:19:24] "POST /api/auth/login HTTP/1.1" 200 -
+2026-03-25 15:19:24,726 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:19:24] "GET /api/auth/me HTTP/1.1" 200 -
+2026-03-25 15:19:24,728 - app - INFO - Dispatching threaded scan for query 'apache' by user smoke3b_1774432164
+2026-03-25 15:19:24,728 - app - ERROR - Shodan API key is missing. Cannot perform scan.
+2026-03-25 15:19:24,728 - app - ERROR - Scan error: SHODAN_API_KEY is not configured on the server.
+2026-03-25 15:19:24,729 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:19:24] "[35m[1mPOST /api/scan/ HTTP/1.1[0m" 500 -
+2026-03-25 15:19:24,735 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:19:24] "GET /api/scan/history?page=1&limit=5 HTTP/1.1" 200 -
+2026-03-25 15:19:24,737 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 15:19:24] "[31m[1mGET /api/scan/history?page=1&limit=5 HTTP/1.1[0m" 401 -
+2026-03-25 21:49:31,229 - app - INFO - System Startup: Logging Initialized
+2026-03-25 21:49:31,241 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.21.165.135:5000
+2026-03-25 21:49:31,241 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-25 21:50:12,997 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 21:50:12] "[33mOPTIONS /auth/login HTTP/1.1[0m" 404 -
+2026-03-25 21:51:51,066 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 21:51:51] "[33mGET /scan/history?page=1&limit=15 HTTP/1.1[0m" 404 -
+2026-03-25 21:51:51,096 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 21:51:51] "[33mGET /scan/history?page=1&limit=15 HTTP/1.1[0m" 404 -
+2026-03-25 21:52:02,763 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 21:52:02] "[33mGET /scan/history?page=1&limit=15 HTTP/1.1[0m" 404 -
+2026-03-25 21:52:02,775 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 21:52:02] "[33mGET /scan/history?page=1&limit=15 HTTP/1.1[0m" 404 -
+2026-03-25 21:59:20,257 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 21:59:20] "[33mGET /scan/history?page=1&limit=15 HTTP/1.1[0m" 404 -
+2026-03-25 23:11:50,884 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 23:11:50] "[33mGET /scan/history?page=1&limit=15 HTTP/1.1[0m" 404 -
+2026-03-25 23:11:50,897 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 23:11:50] "[33mGET /scan/history?page=1&limit=15 HTTP/1.1[0m" 404 -
+2026-03-25 23:12:56,839 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 23:12:56] "[33mGET /scan/history?page=1&limit=15 HTTP/1.1[0m" 404 -
+2026-03-25 23:12:56,848 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 23:12:56] "[33mGET /scan/history?page=1&limit=15 HTTP/1.1[0m" 404 -
+2026-03-25 23:13:13,403 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 23:13:13] "[33mGET /scan/history?page=1&limit=15 HTTP/1.1[0m" 404 -
+2026-03-25 23:13:13,407 - werkzeug - INFO - 127.0.0.1 - - [25/Mar/2026 23:13:13] "[33mGET /scan/history?page=1&limit=15 HTTP/1.1[0m" 404 -
