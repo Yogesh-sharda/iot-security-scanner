@@ -39,4 +39,7 @@ def create_app(config_class=Config):
 
 if __name__ == '__main__':
     app = create_app()
-    app.run(debug=True, port=5000)
+    # Avoid Werkzeug debug pinning issues in restricted environments.
+    debug = os.environ.get("FLASK_DEBUG", "0").lower() in ("1", "true", "yes")
+    port = int(os.environ.get("PORT", "5000"))
+    app.run(debug=debug, port=port, use_reloader=False)
