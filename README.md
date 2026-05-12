@@ -15,10 +15,7 @@ A full-stack cybersecurity platform that detects exposed internet-connected devi
 - Frontend: React, Tailwind CSS
 - API: Shodan
 - Auth: JWT
-
-## 📸 Screenshots
-(Add images here)
-
+- 
 ## ⚙️ Setup
 ```bash
 git clone https://github.com/Yogesh-sharda/iot-security-scanner.git
